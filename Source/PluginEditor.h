@@ -4,8 +4,7 @@
 #include "PluginProcessor.h"
 
 //==============================================================================
-class DualOscSynthAudioProcessorEditor  : public juce::AudioProcessorEditor,
-                                           private juce::Timer
+class DualOscSynthAudioProcessorEditor  : public juce::AudioProcessorEditor
 {
 public:
     DualOscSynthAudioProcessorEditor (DualOscSynthAudioProcessor&);
@@ -14,7 +13,6 @@ public:
     //==============================================================================
     void paint (juce::Graphics&) override;
     void resized() override;
-    void timerCallback() override;
 
 private:
     // Ссылка на процессор

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-subbuild\CMakeFiles\6b52f86b0814fb3b360fd4b024886c80\juce-populate-mkdir.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-subbuild\CMakeFiles\6b52f86b0814fb3b360fd4b024886c80\juce-populate-download.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-subbuild\CMakeFiles\6b52f86b0814fb3b360fd4b024886c80\juce-populate-update.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-subbuild\CMakeFiles\6b52f86b0814fb3b360fd4b024886c80\juce-populate-patch.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-subbuild\CMakeFiles\6b52f86b0814fb3b360fd4b024886c80\juce-populate-configure.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-subbuild\CMakeFiles\6b52f86b0814fb3b360fd4b024886c80\juce-populate-build.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-subbuild\CMakeFiles\6b52f86b0814fb3b360fd4b024886c80\juce-populate-install.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-subbuild\CMakeFiles\6b52f86b0814fb3b360fd4b024886c80\juce-populate-test.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-subbuild\CMakeFiles\8bb2de185eef696e6bc0662309db41db\juce-populate-complete.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-subbuild\CMakeFiles\97048cbdbd12c00d4805a435ab0a2faa\juce-populate.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-subbuild\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-subbuild\CMakeFiles\juce-populate" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{F925B16A-5F32-3F7C-8F26-7E7402BF284B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

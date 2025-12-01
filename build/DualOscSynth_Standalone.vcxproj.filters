@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-src\modules\juce_audio_plugin_client\juce_audio_plugin_client_AAX.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-src\modules\juce_audio_plugin_client\juce_audio_plugin_client_AAX_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-src\modules\juce_audio_plugin_client\juce_audio_plugin_client_ARA.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-src\modules\juce_audio_plugin_client\juce_audio_plugin_client_LV2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-src\modules\juce_audio_plugin_client\juce_audio_plugin_client_Standalone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-src\modules\juce_audio_plugin_client\juce_audio_plugin_client_Unity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-src\modules\juce_audio_plugin_client\juce_audio_plugin_client_VST2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-src\modules\juce_audio_plugin_client\juce_audio_plugin_client_VST3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\DualOscSynth_rc_lib.dir\$(Configuration)\DualOscSynth_resources.res">
+      <Filter>Object Libraries</Filter>
+    </Object>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Object Libraries">
+      <UniqueIdentifier>{633C03E5-A0CF-3401-A515-B7F2FB9EF31B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{149CE0BC-05F2-346B-892D-CFCC4A6782B8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

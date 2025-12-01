@@ -1,0 +1,14 @@
+# Target labels
+ juce-populate
+# Source files and their labels
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild/CMakeFiles/juce-populate
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild/CMakeFiles/97048cbdbd12c00d4805a435ab0a2faa/juce-populate.rule
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild/CMakeFiles/8bb2de185eef696e6bc0662309db41db/juce-populate-complete.rule
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild/CMakeFiles/6b52f86b0814fb3b360fd4b024886c80/juce-populate-build.rule
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild/CMakeFiles/6b52f86b0814fb3b360fd4b024886c80/juce-populate-configure.rule
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild/CMakeFiles/6b52f86b0814fb3b360fd4b024886c80/juce-populate-download.rule
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild/CMakeFiles/6b52f86b0814fb3b360fd4b024886c80/juce-populate-install.rule
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild/CMakeFiles/6b52f86b0814fb3b360fd4b024886c80/juce-populate-mkdir.rule
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild/CMakeFiles/6b52f86b0814fb3b360fd4b024886c80/juce-populate-patch.rule
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild/CMakeFiles/6b52f86b0814fb3b360fd4b024886c80/juce-populate-test.rule
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild/CMakeFiles/6b52f86b0814fb3b360fd4b024886c80/juce-populate-update.rule

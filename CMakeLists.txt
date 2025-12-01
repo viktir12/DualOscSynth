@@ -19,6 +19,8 @@ juce_add_plugin(DualOscSynth
     FORMATS VST3 Standalone  # ← ТОЛЬКО VST3 И STANDALONE
     # VST2_ENABLED OFF       # ← ЭТА СТРОКА НЕ НУЖНА
     VST3_CATEGORIES Instrument
+    IS_SYNTH TRUE                   # КРИТИЧНО ВАЖНО: это синтезатор
+    NEEDS_MIDI_INPUT TRUE           # КРИТИЧНО ВАЖНО: нужен MIDI вход
     PRODUCT_NAME "DualOscSynth"
 )
 

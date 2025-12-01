@@ -5,6 +5,9 @@
               pluginVST3Category="Synth">
   <MAINGROUP id="x0MOVf" name="NewProject">
     <GROUP id="{D5342BE2-C711-60FB-227E-D2D5AC6CB298}" name="Source"/>
+    <FILE id="KjejWf" name="DualOscVoice.cpp" compile="1" resource="0"
+          file="Source/DualOscVoice.cpp"/>
+    <FILE id="xpMCGB" name="DualOscVoice.h" compile="0" resource="0" file="Source/DualOscVoice.h"/>
     <FILE id="JeHD34" name="PluginEditor.cpp" compile="1" resource="0"
           file="Source/PluginEditor.cpp"/>
     <FILE id="IuOi7f" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>

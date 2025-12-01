@@ -58,13 +58,19 @@ void DualOscSynthAudioProcessor::prepareToPlay (double sampleRate, int samplesPe
     ampSmoothed2.reset(sampleRate, smoothingTimeSeconds);
     cutoffSmoothed.reset(sampleRate, smoothingTimeSeconds);
 
-    ampSmoothed1.setCurrentAndTargetValue(*apvts.getRawParameterValue("osc1Amp"));
-    ampSmoothed2.setCurrentAndTargetValue(*apvts.getRawParameterValue("osc2Amp"));
-    cutoffSmoothed.setCurrentAndTargetValue(*apvts.getRawParameterValue("cutoff"));
-
     // Сброс состояния фильтра
     filterStateLeft = 0.0f;
     filterStateRight = 0.0f;
+    
+    // Инициализация целевых значений
+    updateSmoothedTargets();
+}
+
+void DualOscSynthAudioProcessor::updateSmoothedTargets()
+{
+    ampSmoothed1.setTargetValue(*apvts.getRawParameterValue("osc1Amp"));
+    ampSmoothed2.setTargetValue(*apvts.getRawParameterValue("osc2Amp"));
+    cutoffSmoothed.setTargetValue(*apvts.getRawParameterValue("cutoff"));
 }
 
 void DualOscSynthAudioProcessor::releaseResources()
@@ -103,37 +109,60 @@ void DualOscSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
+    // Отладочный вывод для проверки получения MIDI (только в debug сборке)
+    #if JUCE_DEBUG
+    if (midiMessages.getNumEvents() > 0)
+    {
+        DBG("MIDI events: " + String(midiMessages.getNumEvents()));
+    }
+    #endif
+    
     // Обработка MIDI через MidiKeyboardState
     midiKeyboardState.processNextMidiBuffer(midiMessages, 0, buffer.getNumSamples(), true);
 
+    // Обновляем целевые значения для плавного изменения параметров
+    updateSmoothedTargets();
+    
     // Определение активной ноты (монофонический режим)
     int newMidiNote = -1;
+    bool anyNoteOn = false;
+    
+    // Проверяем все ноты от высоких к низким
     for (int note = 127; note >= 0; --note)
     {
-        // Правильный вызов isNoteOn (требует номер канала)
-        if (midiKeyboardState.isNoteOn(1, note))
+        // Проверяем все каналы
+        for (int channel = 1; channel <= 16; ++channel)
         {
-            newMidiNote = note;
-            break; // берем самую высокую ноту
+            if (midiKeyboardState.isNoteOn(channel, note))
+            {
+                anyNoteOn = true;
+                newMidiNote = note;
+                break; // нашли самую высокую ноту
+            }
         }
+        if (anyNoteOn) break;
     }
 
     bool noteChanged = (newMidiNote != currentMidiNote);
-    bool noteOn = (newMidiNote >= 0);
     bool wasOn = (currentMidiNote >= 0);
 
-    if (noteOn && noteChanged)
+    if (anyNoteOn && noteChanged)
     {
         // Обновление частоты при новой ноте
-        float baseFreq = juce::MidiMessage::getMidiNoteInHertz(newMidiNote);
+        float baseFreq = juce::MidiMessage::getMidiNoteInHertz(static_cast<float>(newMidiNote));
         osc1.setFrequency(baseFreq);
         osc2.setFrequency(baseFreq * 1.5f); // фиксированный интервал (квинта)
         currentMidiNote = newMidiNote;
+        anyNoteCurrentlyPlaying = true;
     }
-    else if (!noteOn && wasOn)
+    else if (!anyNoteOn && wasOn)
     {
         // Сброс при отпускании всех нот
         currentMidiNote = -1;
+        anyNoteCurrentlyPlaying = false;
+        // Сброс состояния фильтра для предотвращения щелчков
+        filterStateLeft = 0.0f;
+        filterStateRight = 0.0f;
     }
 
     // Получаем указатели на каналы
@@ -141,6 +170,24 @@ void DualOscSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
     float* rightChannel = buffer.getNumChannels() > 1 ? buffer.getWritePointer(1) : leftChannel;
 
     int numSamples = buffer.getNumSamples();
+
+    // Кэшируем параметры формы волны (обновляем только при изменении)
+    static int lastOsc1Wave = -1;
+    static int lastOsc2Wave = -1;
+    int currentOsc1Wave = static_cast<int>(*apvts.getRawParameterValue("osc1Wave"));
+    int currentOsc2Wave = static_cast<int>(*apvts.getRawParameterValue("osc2Wave"));
+    
+    if (currentOsc1Wave != lastOsc1Wave)
+    {
+        osc1.setWaveType(static_cast<SimpleOscillator::WaveMode>(currentOsc1Wave));
+        lastOsc1Wave = currentOsc1Wave;
+    }
+    
+    if (currentOsc2Wave != lastOsc2Wave)
+    {
+        osc2.setWaveType(static_cast<SimpleOscillator::WaveMode>(currentOsc2Wave));
+        lastOsc2Wave = currentOsc2Wave;
+    }
 
     // Цикл по семплам
     for (int i = 0; i < numSamples; ++i)
@@ -150,25 +197,30 @@ void DualOscSynthAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer,
         float amp2 = ampSmoothed2.getNextValue();
         float cutoff = cutoffSmoothed.getNextValue();
 
-        // Расчёт коэффициента фильтра (однополюсный LPF)
-        const double rc = 1.0 / (2.0 * juce::MathConstants<double>::pi * cutoff);
-        const double dt = 1.0 / currentSampleRate;
-        float alpha = static_cast<float>(dt / (rc + dt));
-        alpha = juce::jlimit(0.0f, 1.0f, alpha); // защита от некорректных значений
+        // Если нет нажатых клавиш - выключаем звук
+        if (!anyNoteCurrentlyPlaying)
+        {
+            amp1 = 0.0f;
+            amp2 = 0.0f;
+        }
 
+        // Ограничение минимальной частоты среза для стабильности фильтра
+        cutoff = juce::jmax(20.0f, cutoff);
+        cutoff = juce::jmin(static_cast<float>(currentSampleRate) * 0.45f, cutoff); // Предотвращение нестабильности
+
+        // Расчёт коэффициента фильтра (однополюсный LPF)
+        const float twoPiFc = 2.0f * juce::MathConstants<float>::pi * cutoff;
+        const float dt = 1.0f / static_cast<float>(currentSampleRate);
+        const float rc = 1.0f / twoPiFc;
+        const float alpha = dt / (rc + dt);
+        
         // Обновление амплитуды осцилляторов
         osc1.setAmplitude(amp1);
         osc2.setAmplitude(amp2);
 
-        // Обновление формы волны
-        osc1.setWaveType(static_cast<SimpleOscillator::WaveMode>(
-            static_cast<int>(*apvts.getRawParameterValue("osc1Wave"))));
-        osc2.setWaveType(static_cast<SimpleOscillator::WaveMode>(
-            static_cast<int>(*apvts.getRawParameterValue("osc2Wave"))));
-
-        // Генерация сигнала
-        float osc1Out = osc1.getNextSample();
-        float osc2Out = osc2.getNextSample();
+        // Генерация сигнала (только если есть нажатые клавиши)
+        float osc1Out = anyNoteCurrentlyPlaying ? osc1.getNextSample() : 0.0f;
+        float osc2Out = anyNoteCurrentlyPlaying ? osc2.getNextSample() : 0.0f;
 
         // Смешивание
         float mix = (osc1Out + osc2Out) * 0.5f;

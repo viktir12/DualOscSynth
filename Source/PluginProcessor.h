@@ -76,4 +76,8 @@ private:
     juce::SmoothedValue<float> cutoffSmoothed {5000.0f};
 
     double currentSampleRate = 44100.0;
+    
+    // НОВЫЙ МЕТОД: обновление целевых значений для плавного изменения параметров
+    void updateSmoothedTargets();
+    bool anyNoteCurrentlyPlaying = false;
 };

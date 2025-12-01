@@ -17,7 +17,7 @@ DualOscSynthAudioProcessorEditor::DualOscSynthAudioProcessorEditor (DualOscSynth
     osc2WaveSlider.setNumDecimalPlacesToDisplay(0);
 
     cutoffSlider.setRange(20.0, 20000.0);
-    cutoffSlider.setSkewFactorFromMidPoint(1000.0f); // ИСПРАВЛЕНО: 1000.0f вместо 1000
+    cutoffSlider.setSkewFactorFromMidPoint(1000.0f);
 
     // Attachment'ы для параметров
     osc1FreqAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(processor.apvts, "osc1Freq", osc1FreqSlider);
@@ -36,6 +36,13 @@ DualOscSynthAudioProcessorEditor::DualOscSynthAudioProcessorEditor (DualOscSynth
     osc2AmpLabel.setText("Osc2 Amp", juce::dontSendNotification);
     osc2WaveLabel.setText("Osc2 Wave", juce::dontSendNotification);
     cutoffLabel.setText("Cutoff", juce::dontSendNotification);
+    osc1FreqLabel.setJustificationType(juce::Justification::centred);
+    osc1AmpLabel.setJustificationType(juce::Justification::centred);
+    osc1WaveLabel.setJustificationType(juce::Justification::centred);
+    osc2FreqLabel.setJustificationType(juce::Justification::centred);
+    osc2AmpLabel.setJustificationType(juce::Justification::centred);
+    osc2WaveLabel.setJustificationType(juce::Justification::centred);
+    cutoffLabel.setJustificationType(juce::Justification::centred);
 
     // Добавление компонентов
     addAndMakeVisible(osc1FreqSlider);
@@ -54,10 +61,10 @@ DualOscSynthAudioProcessorEditor::DualOscSynthAudioProcessorEditor (DualOscSynth
     addAndMakeVisible(osc2WaveLabel);
     addAndMakeVisible(cutoffLabel);
 
+    midiKeyboard.setMidiChannel(1); // Устанавливаем канал по умолчанию
+    
+    // Добавляем обработчики событий для MIDI-клавиатуры
     addAndMakeVisible(midiKeyboard);
-
-    // Запуск таймера для обновления интерфейса
-    startTimer(50);
 
     // Размеры окна
     setSize(750, 400);
@@ -65,19 +72,45 @@ DualOscSynthAudioProcessorEditor::DualOscSynthAudioProcessorEditor (DualOscSynth
 
 DualOscSynthAudioProcessorEditor::~DualOscSynthAudioProcessorEditor()
 {
-    stopTimer();
 }
 
 //==============================================================================
 void DualOscSynthAudioProcessorEditor::paint (juce::Graphics& g)
 {
     // Фон
-    g.fillAll (juce::Colours::darkgrey);
+    g.fillAll (juce::Colours::darkgrey.darker(0.2f));
 
     // Заголовок
     g.setColour (juce::Colours::white);
-    g.setFont (24.0f);
-    g.drawText ("Dual Oscillator Synth", getLocalBounds(), juce::Justification::centredTop, 24);
+    g.setFont (juce::Font(24.0f, juce::Font::bold));
+    g.drawText ("Dual Oscillator Synth", getLocalBounds(), juce::Justification::centredTop, true);
+    
+    // Индикатор MIDI активности (для отладки) - СОВРЕМЕННАЯ РЕАЛИЗАЦИЯ
+    bool hasActiveNotes = false;
+    auto* midiState = processor.getMidiKeyboardState();
+    
+    // Проверяем все ноты на всех каналах
+    for (int channel = 1; channel <= 16; ++channel)
+    {
+        for (int note = 0; note < 128; ++note)
+        {
+            if (midiState->isNoteOn(channel, note))
+            {
+                hasActiveNotes = true;
+                break;
+            }
+        }
+        if (hasActiveNotes) break;
+    }
+    
+    if (hasActiveNotes)
+    {
+        g.setColour(juce::Colours::green.withAlpha(0.8f));
+        g.fillEllipse(getWidth() - 30, 10, 20, 20);
+        
+        g.setColour(juce::Colours::white);
+        g.drawText("MIDI", getWidth() - 50, 5, 40, 20, juce::Justification::centred);
+    }
 }
 
 void DualOscSynthAudioProcessorEditor::resized()
@@ -113,10 +146,4 @@ void DualOscSynthAudioProcessorEditor::resized()
     osc2WaveSlider.setBounds(osc2Area.removeFromTop(controlHeight));
     cutoffLabel.setBounds(osc2Area.removeFromTop(labelHeight));
     cutoffSlider.setBounds(osc2Area.removeFromTop(controlHeight));
-}
-
-void DualOscSynthAudioProcessorEditor::timerCallback()
-{
-    // Обновление интерфейса (если нужно)
-    repaint();
 }

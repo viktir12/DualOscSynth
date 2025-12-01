@@ -1,0 +1,10 @@
+^C:\USERS\ALEXA\DESKTOP\DIPLOM\SYNTHZER\NEWPROJECT BETTERVERSIONMAIN\BUILD\_DEPS\JUCE-SRC\EXTRAS\BUILD\JUCEAIDE\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-src" "-BC:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-build/tools" --check-stamp-file "C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-build/tools/extras/Build/juceaide/CMakeFiles/generate.stamp"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

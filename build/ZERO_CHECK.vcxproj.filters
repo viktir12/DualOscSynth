@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\CMakeFiles\4425773485adcf932a961fde26642758\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{7CDFF032-7C68-3437-ABA3-3B6798CA7203}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

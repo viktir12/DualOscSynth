@@ -1,0 +1,14 @@
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/CMakeFiles/DualOscSynth.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/CMakeFiles/DualOscSynth_All.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/CMakeFiles/DualOscSynth_Standalone.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/CMakeFiles/DualOscSynth_rc_lib.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/CMakeFiles/DualOscSynth_VST3.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/CMakeFiles/juce_vst3_helper.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/CMakeFiles/INSTALL.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-build/CMakeFiles/INSTALL.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-build/CMakeFiles/ALL_BUILD.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-build/modules/CMakeFiles/INSTALL.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-build/extras/Build/CMakeFiles/INSTALL.dir
+C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-build/extras/Build/juceaide/CMakeFiles/INSTALL.dir

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\alexa\Desktop\diplom\synthzer\NewProject BetterVersionMain\build\_deps\juce-build\tools\CMakeFiles\942a237a2e7fed83a3345718dde8c318\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{9BE04115-5DEF-3E34-B5D3-6C3C258E755F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

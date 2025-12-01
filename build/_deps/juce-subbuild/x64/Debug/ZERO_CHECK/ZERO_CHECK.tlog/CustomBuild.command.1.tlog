@@ -1,0 +1,10 @@
+^C:\USERS\ALEXA\DESKTOP\DIPLOM\SYNTHZER\NEWPROJECT BETTERVERSIONMAIN\BUILD\_DEPS\JUCE-SUBBUILD\CMAKEFILES\97048CBDBD12C00D4805A435AB0A2FAA\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" "-SC:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild" "-BC:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/alexa/Desktop/diplom/synthzer/NewProject BetterVersionMain/build/_deps/juce-subbuild/juce-populate.sln"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
